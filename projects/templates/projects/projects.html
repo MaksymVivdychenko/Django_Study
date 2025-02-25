@@ -1,5 +1,9 @@
 {% extends 'main.html' %}
 
 {%block content%}
-<p>test test</p>
+<ol>
+    {% for project in projects%}
+        <li>{{project.title}} ---- {{project.description}}</li>
+    {%endfor%}
+</ol>
 {%endblock %}
