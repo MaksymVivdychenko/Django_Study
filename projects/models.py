@@ -23,11 +23,11 @@ class Review(models.Model):
     #owner
     project = models.ForeignKey(Project, on_delete= models.CASCADE)
     body = models.TextField(null=True, blank=True)
-    value = models.CharField(max_length=200)
+    value = models.CharField(max_length=200, choices=VOTE_TYPE)
     date_created = models.DateField(auto_now_add=True)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     def __str__(self):
-        return self.value
+        return f'{self.project.title} --- {self.value}'
     
 class Tag(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
