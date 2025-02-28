@@ -1,16 +1,11 @@
 from django.shortcuts import render
-
-project_list = [{'id': '1', 'title': 'Booking service', 'description' : 'Site for booking every object that you need'},
-                {'id': '2', 'title': 'Cinema service', 'description' : 'Site for watching movies'},
-                {'id': '3', 'title': 'OLX service', 'description' : 'Sell and buy site'}]
+from .models import Project
 
 def Projects(request):
+    project_list = Project.objects.all()
     return render(request,'projects/projects.html', {'projects': project_list})
 
-def Single_proj(request, id):
-    project = None
-    for i in project_list:
-        if i['id'] == id:
-            project = i['id']
-            break
-    return render(request,'projects/single-project.html', {'project': project})
+def Single_proj(request, project_id):
+    project = Project.objects.get(id = project_id)
+    tags = project.tags.all()
+    return render(request,'projects/single-project.html', {'project': project, 'tags': tags})

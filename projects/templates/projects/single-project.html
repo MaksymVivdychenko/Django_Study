@@ -1,5 +1,10 @@
 {% extends 'main.html' %}
 
 {%block content%}
-        <p>{{project.title}} ---- {{project.description}}</p>
+        <h1>{{project.title}}</h1>
+        <p>Description : {{project.description}}</p>
+        <hr>
+        {% for tag in tags %}
+        <p>{{tag}}</p>
+        {%endfor%}
 {%endblock %}
