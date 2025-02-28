@@ -1,6 +1,7 @@
 {% extends 'main.html' %}
 
 {%block content%}
+<a href="{%url 'add_project'%}">Add project</a>
 <ol>
     {% for project in projects%}
         <li><a href="{% url 'single_project' project.id %}">{{project.title}}</a> ---- {{project.description}}</li>
