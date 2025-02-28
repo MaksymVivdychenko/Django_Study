@@ -4,7 +4,9 @@
 <a href="{%url 'add_project'%}">Add project</a>
 <ol>
     {% for project in projects%}
-        <li><a href="{% url 'single_project' project.id %}">{{project.title}}</a> ---- {{project.description}}</li>
+        <li>{{project.title}} ---- {{project.description}}  
+                <a href="{% url 'single_project' project.id %}">View</a>    
+                ---- <a href="{% url 'edit_project' project.id %}">Edit</a> ---- <a href="{% url 'delete_project' project.id %}">Delete</a></li>
     {%endfor%}
 </ol>
 {%endblock %}

@@ -20,4 +20,25 @@ def Add_project(request):
             return redirect('projects')
 
     content = {'project_form': project_form}
-    return render(request, 'projects/add-project.html', content)
+    return render(request, 'projects/add-edit-project.html', content)
+
+def Edit_project(request, project_id):
+    project = Project.objects.get(id = project_id)
+    project_form = ProjectForm(instance= project)
+    if request.method == 'POST':
+        project_form = ProjectForm(request.POST, instance= project)
+        if project_form.is_valid():
+            project_form.save()
+            return redirect('projects')
+
+    content = {'project_form': project_form}
+    return render(request, 'projects/add-edit-project.html', content)
+
+
+def Delete_project(request, project_id):
+    project = Project.objects.get(id = project_id)
+    if request.method == 'POST':
+        project.delete()
+        return redirect('projects')
+    content = {'project': project}
+    return render(request, 'projects/delete-project.html', content)
